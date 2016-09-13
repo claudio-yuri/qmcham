@@ -1,6 +1,5 @@
-var nodemailer = require('nodemailer');
+var mailer = require("./modules/mailer.js");
 
-// const mongoPort = 27017;
 const opcionesDeComida = [
   {
     nombre: "Sandwhich - Paraguay y Ayacucho",
@@ -36,12 +35,26 @@ const opcionesDeComida = [
     nombre: "Doddy",
     precioPromedio: 70,
     esLujo: false
+  },
+  {
+    nombre: "Mi Matute",
+    precioPromedio: 55,
+    esLujo: false
+  },
+  {
+    nombre: "Güerrin",
+    precioPromedio: 100,
+    esLujo: true
+  },
+  {
+    nombre: "El cuartito",
+    precioPromedio: 100,
+    esLujo: true
   }
 ];
 
 var ultimosTres = [];
 ultimosTres.push(opcionesDeComida[0]);
-// console.log(ultimosTres);
 
 var result;
 
@@ -53,22 +66,4 @@ result = result[Math.floor(Math.random()*length)];
 
 console.log(result);
 
-// create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport('smtps://' + process.env.EMAILSENDER + ':' + process.env.EMAILPASSWORD + '@smtp.gmail.com');
-
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: '"Fred Foo 👥" <foo@blurdybloop.com>', // sender address
-    to: 'claudioyuri@hotmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world 🐴', // plaintext body
-    html: '<b>Hello world 🐴</b>' // html body
-};
-
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-});
+mailer.sendMail(result, {name: "Claudio Yuri", email: "process.env.EMAILSENDER"}, ["claudioyuri@hotmail.com"]);

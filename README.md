@@ -12,3 +12,4 @@ TO-DO
 * Incluir la información en el mail
 * MODULARIZAR!!
 * Parametrizar algunas decisiones (si quiero o no quiero lujo, etc.)
+* Sugerir plaza según el clima
