@@ -6,6 +6,7 @@
   "author": "cyuri",
   "license": "ISC",
   "dependencies": {
-    "nodemailer": "^2.6.0"
+    "nodemailer": "^2.6.0",
+    "mongodb": "^2.2.9"
   }
 }

@@ -1,0 +1,52 @@
+[
+  {
+    "nombre": "Sandwhich - Paraguay y Ayacucho",
+    "precioPromedio": 50,
+    "esLujo": false
+  },
+  {
+    "nombre": "Sangucheto",
+    "precioPromedio": 60,
+    "esLujo": false
+  },
+  {
+    "nombre": "Esclavas",
+    "precioPromedio": 60,
+    "esLujo": false
+  },
+  {
+    "nombre": "Dellepiane",
+    "precioPromedio": 120,
+    "esLujo": true
+  },
+  {
+    "nombre": "Al buen tallarín",
+    "precioPromedio": 90,
+    "esLujo": true
+  },
+  {
+    "nombre": "Chino Limpio",
+    "precioPromedio": 45,
+    "esLujo": false
+  },
+  {
+    "nombre": "Doddy",
+    "precioPromedio": 70,
+    "esLujo": false
+  },
+  {
+    "nombre": "Mi Matute",
+    "precioPromedio": 55,
+    "esLujo": false
+  },
+  {
+    "nombre": "Güerrin",
+    "precioPromedio": 100,
+    "esLujo": true
+  },
+  {
+    "nombre": "El cuartito",
+    "precioPromedio": 100,
+    "esLujo": true
+  }
+]

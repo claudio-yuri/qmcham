@@ -1,69 +1,47 @@
 var mailer = require("./modules/mailer.js");
+var mongodb = require('mongodb');
 
-const opcionesDeComida = [
-  {
-    nombre: "Sandwhich - Paraguay y Ayacucho",
-    precioPromedio: 50,
-    esLujo: false
-  },
-  {
-    nombre: "Sangucheto",
-    precioPromedio: 60,
-    esLujo: false
-  },
-  {
-    nombre: "Esclavas",
-    precioPromedio: 60,
-    esLujo: false
-  },
-  {
-    nombre: "Dellepiane",
-    precioPromedio: 120,
-    esLujo: true
-  },
-  {
-    nombre: "Al buen tallarín",
-    precioPromedio: 90,
-    esLujo: true
-  },
-  {
-    nombre: "Chino Limpio",
-    precioPromedio: 45,
-    esLujo: false
-  },
-  {
-    nombre: "Doddy",
-    precioPromedio: 70,
-    esLujo: false
-  },
-  {
-    nombre: "Mi Matute",
-    precioPromedio: 55,
-    esLujo: false
-  },
-  {
-    nombre: "Güerrin",
-    precioPromedio: 100,
-    esLujo: true
-  },
-  {
-    nombre: "El cuartito",
-    precioPromedio: 100,
-    esLujo: true
-  }
-];
+var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.env.MONGOPORT + '/recomendaciones', (err, db) => {
+  if (err) throw err;
+  console.log("Connected to Database");
 
-var ultimosTres = [];
-ultimosTres.push(opcionesDeComida[0]);
+	//insert records
+	db.collection('lugares').find({esLujo: false}).toArray((err, opcionesDeComida) => {
+    console.log(opcionesDeComida);
+    db.collection('ultimos').find({}).toArray((err, ultimos) => {
+      if (err) console.log(err);
+      var result = opcionesDeComida;
+      console.log(ultimos);
+      if(ultimos && ultimos.length > 0){
+        console.log("hay ultimis");
+        result = [];
+        for(var oc in opcionesDeComida){
+          for(var u in ultimos){
+            if(!opcionesDeComida[oc]._id.equals(ultimos[u].idLugar)){
+              result.push(opcionesDeComida[oc]);
+            }
+          }
+        }
+        //result = opcionesDeComida.filter((x) => ultimos.find((u) => u.idLugar != x._id));
+      }
+      console.log("resultado: ",result);
 
-var result;
+      var length = result.length;
 
-result = opcionesDeComida.filter((x) => !x.esLujo && !ultimosTres.includes(x));
+      result = result[Math.floor(Math.random()*length)];
 
-var length = result.length;
+      console.log("resultado: ",result);
 
-result = result[Math.floor(Math.random()*length)];
+      if(typeof result === 'undefined'){
+        console.log("no encontré nada!");
+        db.close();
+        process.exit(1);
+      }
 
-console.log(result);
-
-mailer.sendMail(result, {name: "Claudio Yuri", email: "process.env.EMAILSENDER"}, ["claudioyuri@hotmail.com"]);
+      db.collection('ultimos').insert({idLugar: result._id, nombre: result.nombre, fecha: new Date()}, (err, records) => {
+        //mailer.sendMail(result, {name: "Claudio Yuri", email: "process.env.EMAILSENDER"}, ["claudioyuri@hotmail.com"]);
+        db.close();
+      });
+    });
+  });
+});
