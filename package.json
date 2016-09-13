@@ -1,0 +1,11 @@
+{
+  "name": "qmcam",
+  "version": "0.0.1",
+  "description": "¿Qué mierda comemos al mediodía?",
+  "main": "index.js",
+  "author": "cyuri",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^2.6.0"
+  }
+}
