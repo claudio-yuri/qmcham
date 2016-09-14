@@ -10,23 +10,17 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
 
   //busco los últimos, ordenado por fecha descendente y me quedo con los últimos 3
   db.collection('ultimos').find({}).sort({fecha: -1}).limit(3).toArray((err, ultimos) => {
-
-    console.log(ultimos);
     var ultIds = ultimos.map((x) => x.idLugar);
-    console.log(ultIds);
     //busco todos los lugares disponibles sin contar los últimos seleccionados
     db.collection('lugares').find({_id: {$nin: ultIds}, esLujo: false}).toArray((err, opcionesDeComida) => {
       if (err) console.log(err);
       var result = opcionesDeComida;
-      console.log(opcionesDeComida);
 
       console.log("Aplicando algoritmo de desición...");
 
       var length = result.length;
 
       result = result[Math.floor(Math.random()*length)];
-
-      console.log("resultado: ",result);
 
       if(typeof result === 'undefined'){
         console.log("no encontré nada!");
@@ -36,7 +30,7 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
 
       db.collection('ultimos').insert({idLugar: result._id, nombre: result.nombre, fecha: new Date()}, (err, records) => {
         if (err) console.log(err);
-        console.log("Enviando mensaje...");
+
         mailer.sendMail(result, {name: "Claudio Yuri", email: process.env.EMAILSENDER}, ["claudioyuri@hotmail.com"]);
 
         //closedb connection

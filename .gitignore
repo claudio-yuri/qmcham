@@ -2,6 +2,7 @@
 node_modules/
 
 envvars.sh
+out.txt
 
 # Windows image file caches
 Thumbs.db
