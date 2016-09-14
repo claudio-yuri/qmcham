@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 var nodemailer = require('nodemailer');
 
 var exports = module.exports = {};
@@ -10,7 +12,7 @@ exports.sendMail = function(recomendation, sender, recipients) {
   var mailOptions = {
       from: '"' + sender.name + ' 👥" <' + sender.email + '>', // sender address
       to: recipients.join(','), // list of receivers
-      subject: 'Decisión sobre el almuerzo tomada ✔', // Subject line
+      subject: 'Ya sabemos dónde comer ✔', // Subject line
       //text: 'Hello world 🐴', // plaintext body
       html: 'Hoy se come en: <b>' + recomendation.nombre + '</b>. Tiene un precio promedio de: ' + recomendation.precioPromedio // html body
   };
@@ -22,4 +24,4 @@ exports.sendMail = function(recomendation, sender, recipients) {
       }
       console.log('Message sent: ' + info.response);
   });
-}
+};

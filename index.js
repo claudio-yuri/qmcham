@@ -1,30 +1,26 @@
+/*jshint esversion: 6 */
 var mailer = require("./modules/mailer.js");
 var mongodb = require('mongodb');
 
 var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.env.MONGOPORT + '/recomendaciones', (err, db) => {
   if (err) throw err;
-  console.log("Connected to Database");
+  console.log("Conectado a la base de conocimientos...");
 
-	//insert records
-	db.collection('lugares').find({esLujo: false}).toArray((err, opcionesDeComida) => {
-    console.log(opcionesDeComida);
-    db.collection('ultimos').find({}).toArray((err, ultimos) => {
+  console.log("Buscando información...");
+
+  //busco los últimos, ordenado por fecha descendente y me quedo con los últimos 3
+  db.collection('ultimos').find({}).sort({fecha: -1}).limit(3).toArray((err, ultimos) => {
+
+    console.log(ultimos);
+    var ultIds = ultimos.map((x) => x.idLugar);
+    console.log(ultIds);
+    //busco todos los lugares disponibles sin contar los últimos seleccionados
+    db.collection('lugares').find({_id: {$nin: ultIds}, esLujo: false}).toArray((err, opcionesDeComida) => {
       if (err) console.log(err);
       var result = opcionesDeComida;
-      console.log(ultimos);
-      if(ultimos && ultimos.length > 0){
-        console.log("hay ultimis");
-        result = [];
-        for(var oc in opcionesDeComida){
-          for(var u in ultimos){
-            if(!opcionesDeComida[oc]._id.equals(ultimos[u].idLugar)){
-              result.push(opcionesDeComida[oc]);
-            }
-          }
-        }
-        //result = opcionesDeComida.filter((x) => ultimos.find((u) => u.idLugar != x._id));
-      }
-      console.log("resultado: ",result);
+      console.log(opcionesDeComida);
+
+      console.log("Aplicando algoritmo de desición...");
 
       var length = result.length;
 
@@ -39,7 +35,11 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
       }
 
       db.collection('ultimos').insert({idLugar: result._id, nombre: result.nombre, fecha: new Date()}, (err, records) => {
-        //mailer.sendMail(result, {name: "Claudio Yuri", email: "process.env.EMAILSENDER"}, ["claudioyuri@hotmail.com"]);
+        if (err) console.log(err);
+        console.log("Enviando mensaje...");
+        mailer.sendMail(result, {name: "Claudio Yuri", email: process.env.EMAILSENDER}, ["claudioyuri@hotmail.com"]);
+
+        //closedb connection
         db.close();
       });
     });

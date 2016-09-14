@@ -7,9 +7,8 @@ Dada una serie de condiciones, busca dentro de un listado de lugares a donde com
 Aún está en un fase alpha.
 
 TO-DO
-* Persistencia de datos
-* Guardar el histórico de las decisiones
-* Incluir la información en el mail
 * MODULARIZAR!!
 * Parametrizar algunas decisiones (si quiero o no quiero lujo, etc.)
 * Sugerir plaza según el clima
+* Incluir alguna imagen alegórica de giphy
+* Incluir en la base la lista de destinatarios del mail

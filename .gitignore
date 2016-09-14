@@ -1,6 +1,8 @@
 #node_modules
 node_modules/
 
+envvars.sh
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
