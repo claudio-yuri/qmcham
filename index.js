@@ -12,7 +12,7 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
   db.collection('ultimos').find({}).sort({fecha: -1}).limit(3).toArray((err, ultimos) => {
     var ultIds = ultimos.map((x) => x.idLugar);
     var ultimoTipoDeComida = typeof ultimos[0].tipoDeComida == 'undefined'? [] : ultimos[0].tipoDeComida;
-    
+
     //busco todos los lugares disponibles sin contar los últimos seleccionados
     db.collection('lugares').find({_id: {$nin: ultIds}, tipoDeComida: {$nin: ultimoTipoDeComida} , esLujo: false}).toArray((err, opcionesDeComida) => {
       if (err) console.log(err);
@@ -33,7 +33,7 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
       db.collection('ultimos').insert({idLugar: result._id, nombre: result.nombre, fecha: new Date(), tipoDeComida: result.tipoDeComida}, (err, records) => {
         if (err) console.log(err);
 
-        db.collection('destinatarios').find({nombre: "prueba"}).toArray((err, destinatarios) =>{
+        db.collection('destinatarios').find().toArray((err, destinatarios) =>{
           if (err) console.log(err);
 
           mailer.sendMail(result, {name: "Claudio Yuri", email: process.env.EMAILSENDER}, destinatarios.map((x) => x.email));
