@@ -16,5 +16,4 @@ Aún está en un fase alpha.
 * MODULARIZAR!!
 * Parametrizar algunas decisiones (si quiero o no quiero lujo, de que servicio quiero sacar el gif, etc.)
 * Sugerir plaza según el clima
-* Incluir en la base la lista de destinatarios del mail
 * Agrandar el modelo de lugares con propiedades como tipo de comida, si es solo para llevar, etc

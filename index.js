@@ -31,10 +31,14 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
       db.collection('ultimos').insert({idLugar: result._id, nombre: result.nombre, fecha: new Date()}, (err, records) => {
         if (err) console.log(err);
 
-        mailer.sendMail(result, {name: "Claudio Yuri", email: process.env.EMAILSENDER}, ["claudioyuri@hotmail.com"]);
+        db.collection('destinatarios').find({nombre: "prueba"}).toArray((err, destinatarios) =>{
+          if (err) console.log(err);
 
-        //closedb connection
-        db.close();
+          mailer.sendMail(result, {name: "Claudio Yuri", email: process.env.EMAILSENDER}, destinatarios.map((x) => x.email));
+
+          //closedb connection
+          db.close();
+        });
       });
     });
   });
