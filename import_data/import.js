@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // hacemos referencia a la dependencia
 var mongodb = require('mongodb');
 
@@ -12,11 +13,14 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
   if (err) throw err;
   console.log("Connected to Database");
 
-	//insert records
-	db.collection('lugares').insert(lugares, (err, records) => {
+	//limpio la tabla
+	db.collection('lugares').drop(lugares, (err, records) => {
 		if (err) throw err;
-		return;
+		//insert records
+		db.collection('lugares').insert(lugares, (err, records) => {
+			if (err) throw err;
+			db.close();
+		});
 	});
-	
-	db.close();
+
 });
