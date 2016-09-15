@@ -15,7 +15,7 @@ exports.sendMail = function(recomendation, sender, recipients) {
         to: recipients.join(','), // list of receivers
         subject: '✔ ¡Ya sabemos dónde comer!', // Subject line
         //text: 'Hello world 🐴', // plaintext body
-        html: 'Hoy se come en: <b>' + recomendation.nombre + '</b>. Tiene un precio promedio de: ' + recomendation.precioPromedio + (typeof gif !== 'undefined'? '<br /><img src="' + gif + '" />' : "") + "<br />Saluda atentamente, el equipo de Roadmap!"  // html body
+        html: 'Hoy se come en: <b>' + recomendation.nombre + '</b>. Tiene un precio promedio de: $' + recomendation.precioPromedio + (typeof gif !== 'undefined'? '<br /><img src="' + gif + '" />' : "") + "<br />Saluda atentamente, el equipo de Roadmap!"  // html body
     };
 
     // send mail with defined transport object
