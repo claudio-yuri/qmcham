@@ -9,7 +9,7 @@ Aún está en un fase alpha.
 ## Antes de usar
 1. Tenés que tener instalado mongodb, NodeJS y npm.
 2. Corré `npm install` para traer las dependencias.
-3. Tenés que tener seteadas las siguientes variables de entorno: `MONGOPORT="PUERTO_DONDE_ESCUCHA_MONGO"`, `EMAILSENDER="EMAIL_QUE_SE_USA_PARA_ENVIAR"` y `EMAILPASSWORD="PASSWORD_DEL_MAIL"`
+3. Tenés que tener seteadas las siguientes variables de entorno: `MONGOCONNECTIONSTRING`, `EMAILSENDER="EMAIL_QUE_SE_USA_PARA_ENVIAR"` y `EMAILPASSWORD="PASSWORD_DEL_MAIL"`
 4. Si usás gmal, tenés que tener configurada esa cuenta de salida para que se puedan enviar mails desde aplicaciones de terceros (Google it! :)).
 
 ## Roadmap

@@ -9,7 +9,7 @@ var lugares = JSON.parse(contents);
 
 //importamos los lugares
 // obtenemos la base de datos de prueba que creamos
-var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.env.MONGOPORT + '/recomendaciones', (err, db) => {
+var mongoClient = mongodb.MongoClient.connect(process.env.MONGOCONNECTIONSTRING, (err, db) => {
   if (err) throw err;
   console.log("Connected to Database");
 

@@ -2,7 +2,22 @@
 var mailer = require("./modules/mailer.js");
 var mongodb = require('mongodb');
 
-var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.env.MONGOPORT + '/recomendaciones', (err, db) => {
+var errorMsg = "";
+if(!process.env.MONGOCONNECTIONSTRING){
+  errorMsg += "Enviroment var MONGOCONNECTIONSTRING not defined\n";
+}
+if(!process.env.EMAILSENDER){
+  errorMsg += "Enviroment var EMAILSENDER not defined\n";
+}
+if(!process.env.EMAILPASSWORD){
+  errorMsg += "Enviroment var EMAILPASSWORD not defined\n";
+}
+if(errorMsg !== ""){
+  console.log(errorMsg);
+  process.exit(1);
+}
+
+var mongoClient = mongodb.MongoClient.connect(process.env.MONGOCONNECTIONSTRING, (err, db) => {
   if (err) throw err;
   console.log("Conectado a la base de conocimientos...");
 
@@ -11,7 +26,7 @@ var mongoClient = mongodb.MongoClient.connect('mongodb://127.0.0.1:' + process.e
   //busco los últimos, ordenado por fecha descendente y me quedo con los últimos 3
   db.collection('ultimos').find({}).sort({fecha: -1}).limit(3).toArray((err, ultimos) => {
     var ultIds = ultimos.map((x) => x.idLugar);
-    var ultimoTipoDeComida = typeof ultimos[0].tipoDeComida == 'undefined'? [] : ultimos[0].tipoDeComida;
+    var ultimoTipoDeComida = typeof ultimos[0] == 'undefined' || ultimos[0].tipoDeComida == 'undefined'? [] : ultimos[0].tipoDeComida;
 
     //busco todos los lugares disponibles sin contar los últimos seleccionados
     db.collection('lugares').find({_id: {$nin: ultIds}, tipoDeComida: {$nin: ultimoTipoDeComida} , esLujo: false}).toArray((err, opcionesDeComida) => {

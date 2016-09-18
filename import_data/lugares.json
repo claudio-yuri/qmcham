@@ -36,12 +36,6 @@
     "tipoDeComida": ["Variado"]
   },
   {
-    "nombre": "Doddy",
-    "precioPromedio": 70,
-    "esLujo": false,
-    "tipoDeComida": ["Árabe"]
-  },
-  {
     "nombre": "Mi Matute",
     "precioPromedio": 55,
     "esLujo": false,
