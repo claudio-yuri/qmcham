@@ -1,68 +1,68 @@
 [
   {
     "nombre": "Sandwhich - Paraguay y Ayacucho",
-    "precioPromedio": 50,
-    "esLujo": false,
+    "precioPromedio": "50",
+    "esLujo": "false",
     "tipoDeComida": ["Sandwhich"]
   },
   {
     "nombre": "Sangucheto",
-    "precioPromedio": 60,
-    "esLujo": false,
+    "precioPromedio": "60",
+    "esLujo": "false",
     "tipoDeComida": ["Sandwhich"]
   },
   {
     "nombre": "Esclavas",
-    "precioPromedio": 60,
-    "esLujo": false,
+    "precioPromedio": "60",
+    "esLujo": "false",
     "tipoDeComida": ["Variado"]
   },
   {
     "nombre": "Dellepiane",
-    "precioPromedio": 120,
-    "esLujo": true,
+    "precioPromedio": "120",
+    "esLujo": "true",
     "tipoDeComida": ["Hamburguesa"]
   },
   {
     "nombre": "Al buen tallarín",
-    "precioPromedio": 90,
-    "esLujo": true,
+    "precioPromedio": "90",
+    "esLujo": "true",
     "tipoDeComida": ["Pastas"]
   },
   {
     "nombre": "Chino Limpio",
-    "precioPromedio": 45,
-    "esLujo": false,
+    "precioPromedio": "45",
+    "esLujo": "false",
     "tipoDeComida": ["Variado"]
   },
   {
     "nombre": "Mi Matute",
-    "precioPromedio": 55,
-    "esLujo": false,
+    "precioPromedio": "55",
+    "esLujo": "false",
     "tipoDeComida": ["Pizza", "Empanadas"]
   },
   {
     "nombre": "Güerrin",
-    "precioPromedio": 100,
-    "esLujo": true,
+    "precioPromedio": "100",
+    "esLujo": "true",
     "tipoDeComida": ["Pizza"]
   },
   {
     "nombre": "El cuartito",
-    "precioPromedio": 100,
-    "esLujo": true,
+    "precioPromedio": "100",
+    "esLujo": "true",
     "tipoDeComida": ["Pizza"]
   },
   {
     "nombre": "La empanadería",
-    "precioPromedio": 38,
-    "esLujo": false,
+    "precioPromedio": "38",
+    "esLujo": "false",
     "tipoDeComida": ["Empanadas"]
   },
   {
     "nombre": "Zapi",
-    "precioPromedio": 50,
-    "esLujo": false,
+    "precioPromedio": "50",
+    "esLujo": "false",
     "tipoDeComida": ["Pizza"]
   }
 ]
