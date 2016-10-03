@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "¿Qué mierda comemos al mediodía?",
   "main": "index.js",
+  "scripts" : { "start" : "node index.js" },
   "author": "cyuri",
   "license": "ISC",
   "dependencies": {
