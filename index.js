@@ -16,7 +16,7 @@ if(errorMsg !== ""){
 }
 
 const express = require('express');
-const listenPort = 8080;
+const listenPort = process.env.PORT || 8080;
 var app = express();
 var path = __dirname + '/views/';
 
