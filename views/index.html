@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<htm>
+  <head>
+    <title>qmcham</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // var homeModel = {
+        //   getRecommendation = function (){
+        //     $.get("/recomendation", function (data, status){
+        //       console.log(data);
+        //     });
+        //   }
+        // }
+        var homeViewModel = {
+          getRecommendation: function (){
+            $.get("/recomendation", function (data, status){
+              console.log(data);
+            });
+          }
+        };
+        ko.applyBindings(homeViewModel);
+      });
+
+    </script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1>Bienvenido a qmcham!</h1>
+      <p>Pulsá el botón para saber qué comer</p>
+      <p>
+        <a class="btn btn-primary btn-lg" href="#" role="button" data-bind="click: getRecommendation">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </a>
+      </p>
+    </div>
+  </body>
+</htm>
