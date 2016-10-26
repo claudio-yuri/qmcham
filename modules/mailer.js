@@ -7,7 +7,7 @@ var exports = module.exports = {};
 exports.sendMail = function(recomendation, sender, recipients) {
   dameUnGifAlBoleo((gif) => {
     // create reusable transporter object using the default SMTP transport
-    var transporter = nodemailer.createTransport('smtps://' + process.env.EMAILSENDER + ':' + process.env.EMAILPASSWORD + '@' + process.env.SMTPHOST);
+    var transporter = nodemailer.createTransport('smtps://' + process.env.MAILERUSER + ':' + process.env.EMAILPASSWORD + '@' + process.env.SMTPHOST);
 
     // setup e-mail data with unicode symbols
     var mailOptions = {
